@@ -1,0 +1,6 @@
+{
+    "host": "mydatabase.database.windows.net",
+    "database": "mydatabase",
+    "username": "your_username",
+    "password": "your_password"
+  }

@@ -1,0 +1,12 @@
+{
+    "database": {
+      "server": "mydatabase.database.windows.net",
+      "database": "mydatabase",
+      "username": "your_username",
+      "password": "your_password"
+    },
+    "endpoint": {
+      "host": "api.example.com",
+      "basePath": "/v1"
+    }
+  }

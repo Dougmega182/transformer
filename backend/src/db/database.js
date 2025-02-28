@@ -1,14 +1,19 @@
-const { Pool } = require('pg');
+const mongoose = require('mongoose');
 
-// Set up database credentials and connection options
-const dbConfig = {
-  user: 'your_database_username',
-  host: 'your_host_or_ip_address',
-  database: 'your_database_name',
-  password: 'your_database_password',
-};
+// MongoDB connection string
+const mongoDBUri = 'mongodb+srv://dale:Fr@nk1e2014$@transformhomes.gtj2t.mongodb.net/?retryWrites=true&w=majority&appName=transformhomes';
 
-// Create a new pool for the database connections
-const pool = new Pool(dbConfig);
+// Connect to the database
+async function connect() {
+  try {
+    await mongoose.connect(mongoDBUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+  }
+}
 
-module.exports = pool;
+connect();

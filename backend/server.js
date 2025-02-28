@@ -1,33 +1,19 @@
 const express = require('express');
 const app = express();
-const mysql = require('mysql2');
-
-// Database connection settings
-const dbConfig = {
-  host: 'mydatabase.database.windows.net',
-  database: 'mydatabase',
-  user: 'your_username',
-  password: 'your_password'
-};
-
-// Create database connection pool
-const dbPool = mysql.createPool(dbConfig);
-
-// Define routes
-app.get('/users', (req, res) => {
-  // Retrieve users from database using query
-  const query = 'SELECT * FROM users';
-  dbPool.query(query, (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send({ message: 'Error fetching users' });
-    } else {
-      res.json(results);
-    }
-  });
+const cosmosClient = new CosmosClient({
+  endpoint: 'https://transformhomes-server.mongo.cosmos.azure.com:443/',
+  directMode: false,
+  auth: {
+    masterKey: 'YOUR_COSMOS_DB_MASTER_KEY'
+  }
 });
 
-// Start server
+app.get('/api/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const userDoc = await cosmosClient.database('your-database-name').container('your-container-name').item(id).read();
+  res.json(userDoc);
+});
+
 app.listen(3000, () => {
-  console.log('Server started on port 3000');
+  console.log('Server listening on port 3000');
 });

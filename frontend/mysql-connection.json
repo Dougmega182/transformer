@@ -1,7 +1,0 @@
-{
-  "host": "https://transformhomes-server.mongo.cosmos.azure.com:443/",
-  "port": 3306,
-  "user": "MYSQL_USER",
-  "password": "MYSQL_PASSWORD",
-  "database": "transformhomes-database"
-}
